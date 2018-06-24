@@ -4,6 +4,7 @@
 let cardArray = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'],
     opened = [],
     match = 0,
+    delay = 800,
     $deck = $('.deck'),
     $moveNum = $('.moves');
 
@@ -62,7 +63,30 @@ $deck.on('click', '.card:not(".match, .open")', function() {
 	    let $this = $(this),
 			card = $this.context.innerHTML;
   	$this.addClass('open show');
-		opened.push(card);
+        opened.push(card);
+/**
+* @description Flip second card: Compare with first card
+* @param {.open}  - Second click occurs. Any click is logged and compared 
+* @returns {open show} - If the card has same value as in the index then card stays open. If the value is not the same as in index card closes
+*/
+    if (opened.length > 1) {
+        if (card === opened[0]) {
+            $deck.find('.open').addClass('match');
+            setTimeout(function() {
+                $deck.find('.match').removeClass('open show');
+            }, delay);
+            match++;
+        } else {
+            $deck.find('.open').addClass('notmatch');
+                setTimeout(function() {
+                    $deck.find('.open');
+                }, delay / 1.5);
+            setTimeout(function() {
+                $deck.find('.open').removeClass('open show notmatch');
+            }, delay);
+        }
+        opened = [];
+    }
 });
 
 initGame();
