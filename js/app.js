@@ -13,6 +13,31 @@ let cardArray = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-
 	rank3stars = gameCardsQTY + 2,
   	rank2stars = gameCardsQTY + 6,
     rank1stars = gameCardsQTY + 10;
+    min = 0;
+    sec = 0;
+    stopTimer = 0;
+
+/**
+*@description Timer function. When a player starts a game, a displayed timer should also starts. Timer stops when player wins.
+*@param {number}
+*@returns {number} returns the time in seconds and minutes
+*/
+
+window.onload = function() {
+    setInterval(function() {
+        if (stopTimer !== 1) {
+            sec++;
+            if (sec === 60) {
+                min++;
+                sec = 0;
+            }
+            $('.timer').html(min + ':' + sec);
+            console.log(min);
+            console.log(sec);
+        }
+
+    }, 1000);
+};
 
 /*
  * Display the cards on the page

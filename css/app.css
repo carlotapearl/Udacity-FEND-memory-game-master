@@ -116,3 +116,12 @@ h1 {
     margin: 0 5px 0 0;
     color: gold;
 }
+
+/*** timer ***/
+.timer {
+    margin-left: 5px;
+}
+
+.timer-label {
+    margin-left: 50px;
+}
