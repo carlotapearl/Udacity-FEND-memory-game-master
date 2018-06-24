@@ -180,6 +180,7 @@ if (gameCardsQTY === match) {
 	setRating(moves);
 	let score = setRating(moves).score;
 	    setTimeout(function() {
+            endGame(moves, score);
         }, 500);
         stopTimer = 1;
         $('.timer').hide();
@@ -187,5 +188,27 @@ if (gameCardsQTY === match) {
         $('.timer').show();
     }
 });
+
+/**
+* @description End Game Popup Modal: Moves  and score are displayed via modal
+* @param {string}  - Moves are read in and score from setRatings()
+* @returns {string}  - A modal appears to congratulate the player, text is called to disply how much time it took and the star rating
+*/
+
+function endGame(moves, score) {
+	swal({
+		allowEscapeKey: false,
+		allowOutsideClick: false,
+		title: 'Congratulations! You Won!',
+		text: 'With ' + moves + ' Moves and ' + score + ' Stars.\n Great job!' + '\nTotal time : ' + min + ' Minutes and ' + sec + ' Seconds',
+		type: 'success',
+		confirmButtonColor: '#02ccba',
+		confirmButtonText: 'Play Again!'
+	}).then(function(isConfirm) {
+		if (isConfirm) {
+			location.reload();  //reloads the page including the timer
+		}
+	});
+}
 
 initGame();
