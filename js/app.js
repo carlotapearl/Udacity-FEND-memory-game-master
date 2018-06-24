@@ -71,18 +71,18 @@ $deck.on('click', '.card:not(".match, .open")', function() {
 */
     if (opened.length > 1) {
         if (card === opened[0]) {
-            $deck.find('.open').addClass('match');
+            $deck.find('.open').addClass('match animated infinite rubberBand');
             setTimeout(function() {
-                $deck.find('.match').removeClass('open show');
+                $deck.find('.match').removeClass('open show animated infinite rubberBand');
             }, delay);
             match++;
         } else {
-            $deck.find('.open').addClass('notmatch');
+            $deck.find('.open').addClass('notmatch animated infinite wobble');
                 setTimeout(function() {
-                    $deck.find('.open');
+                    $deck.find('.open').removeClass('animated infinite wobble');
                 }, delay / 1.5);
             setTimeout(function() {
-                $deck.find('.open').removeClass('open show notmatch');
+                $deck.find('.open').removeClass('open show notmatch animated infinite wobble');
             }, delay);
         }
         opened = [];
