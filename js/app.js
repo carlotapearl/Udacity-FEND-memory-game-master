@@ -4,6 +4,7 @@
 let cardArray = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'],
     opened = [],
     match = 0,
+    moves = 0,
     delay = 800,
     $deck = $('.deck'),
     $moveNum = $('.moves');
@@ -86,6 +87,8 @@ $deck.on('click', '.card:not(".match, .open")', function() {
             }, delay);
         }
         opened = [];
+            moves++;
+            $moveNum.html(moves);
     }
 });
 
