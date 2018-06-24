@@ -169,6 +169,23 @@ $deck.on('click', '.card:not(".match, .open")', function() {
             $moveNum.html(moves);
             setRating(moves);
     }
+
+/**
+* @description End Game if all cards match
+* @param {score}  - Game score and stars are calculated and checked.
+* @returns {moves, score} - Game scores and status of stars are displayed
+*/
+
+if (gameCardsQTY === match) {
+	setRating(moves);
+	let score = setRating(moves).score;
+	    setTimeout(function() {
+        }, 500);
+        stopTimer = 1;
+        $('.timer').hide();
+        $('.timer').html('0:0');
+        $('.timer').show();
+    }
 });
 
 initGame();
