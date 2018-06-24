@@ -7,8 +7,12 @@ let cardArray = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-
     moves = 0,
     delay = 800,
     $deck = $('.deck'),
-    $moveNum = $('.moves');
-
+    $moveNum = $('.moves'),
+    $ratingStars = $('i'),
+    gameCardsQTY = cardArray.length / 2,
+	rank3stars = gameCardsQTY + 2,
+  	rank2stars = gameCardsQTY + 6,
+    rank1stars = gameCardsQTY + 10;
 
 /*
  * Display the cards on the page
@@ -46,12 +50,33 @@ function shuffle(array) {
 function initGame() {
 	let cards = shuffle(cardArray);
   	$deck.empty();
-  	$moveNum.text('0');
+    $moveNum.text('0');
+  	$ratingStars.removeClass('fa-star-o').addClass('fa-star');  
 		for (i = 0; i < cards.length; i++) {
 			$deck.append($('<li class="card"><i class="fa fa-' + cards[i] + '"></i></li>'))
 		}
 
 }
+
+/**
+* @description Set Rating: Displays Star Rating and score
+* @param {array}  - Full stars are calculated
+* @returns {array} - Three stars are displayed and the score is 0
+*/
+function setRating(moves) {
+	let rating = 3;
+	if (moves > rank3stars && moves < rank2stars) {
+		$ratingStars.eq(2).removeClass('fa-star').addClass('fa-star-o');
+		rating = 2;
+	} else if (moves > rank2stars && moves < rank1stars) {
+		$ratingStars.eq(1).removeClass('fa-star').addClass('fa-star-o');
+		rating = 1;
+	} else if (moves > rank1stars) {
+		$ratingStars.eq(0).removeClass('fa-star').addClass('fa-star-o');
+		rating = 0;
+	}	
+	return { score: rating };
+};
 
 /**
 * @description Flip first card: Card displays symbol
@@ -89,6 +114,7 @@ $deck.on('click', '.card:not(".match, .open")', function() {
         opened = [];
             moves++;
             $moveNum.html(moves);
+            setRating(moves);
     }
 });
 
