@@ -1,6 +1,8 @@
 /*
  * Create a list that holds all of your cards
+ * List global variables
  */
+
 let cardArray = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'],
     opened = [],
     match = 0,
@@ -9,6 +11,7 @@ let cardArray = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-
     $deck = $('.deck'),
     $moveNum = $('.moves'),
     $ratingStars = $('i'),
+    $restart = $('.restart'),
     gameCardsQTY = cardArray.length / 2,
 	rank3stars = gameCardsQTY + 2,
   	rank2stars = gameCardsQTY + 6,
@@ -102,6 +105,31 @@ function setRating(moves) {
 	}	
 	return { score: rating };
 };
+
+/**
+* @description Restart game: Press refresh to start all over and resest deck to orginal state
+* @param {.click}  - User clicks restart to reshuffle grid
+* @returns {initGame()} - User gets notified in modal to accept refresh or continue game
+*/
+
+$restart.on('click', function() {
+    swal({
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      title: 'Are you sure?',
+      text: "Your progress will be lost with one click!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#02ccba',
+      cancelButtonColor: '#f95c3c',
+      confirmButtonText: 'Yes, Restart Game!',
+      cancelButtonText: 'Continue Game'
+    }).then(function(isConfirm) {
+      if (isConfirm) {
+        location.reload();  //reloads the page including the timer 
+      }
+    })
+  });
 
 /**
 * @description Flip first card: Card displays symbol
