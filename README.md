@@ -1,6 +1,6 @@
 # Memory Game Project
 
-This game was built as a [Udacity] (www.udacity.com) Front End Nano Degree project. The purpose is to demostrate mastery of HTML, CSS, and JavaScript. I also implemented jQuery in this project.
+This game was built as a [Udacity](www.udacity.com) Front End Nano Degree project. The purpose is to demostrate mastery of HTML, CSS, and JavaScript. I also implemented jQuery in this project.
 
 ## Udacity Project Instructions
 
@@ -17,7 +17,7 @@ More specific, detailed instructions, were made avaible by Udacity in the projec
 6. You can restart the game at any time by clicking on the restart button in the score pannel.
 7. Upon matching all cards you will get a congratulatory pop up modal informing you of your score stats for the game.
 
-To play the game click [here] (https://htmlpreview.github.io/?https://github.com/carlotapearl/Udacity-FEND-memory-game-master/blob/master/index.html) to see a live version of the game.
+To play the game click [here](https://htmlpreview.github.io/?https://github.com/carlotapearl/Udacity-FEND-memory-game-master/blob/master/index.html) to see a live version of the game.
 
 Enjoy and happy matching!
 
