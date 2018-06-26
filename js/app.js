@@ -93,14 +93,14 @@ function initGame() {
 function setRating(moves) {
 	let rating = 3;
 	if (moves > rank3stars && moves < rank2stars) {
+		$ratingStars.eq(3).removeClass('fa-star').addClass('fa-star-o');
+		rating = 3;
+	} else if (moves > rank2stars && moves < rank1stars) {
 		$ratingStars.eq(2).removeClass('fa-star').addClass('fa-star-o');
 		rating = 2;
-	} else if (moves > rank2stars && moves < rank1stars) {
+	} else if (moves > rank1stars) {
 		$ratingStars.eq(1).removeClass('fa-star').addClass('fa-star-o');
 		rating = 1;
-	} else if (moves > rank1stars) {
-		$ratingStars.eq(0).removeClass('fa-star').addClass('fa-star-o');
-		rating = 0;
 	}	
 	return { score: rating };
 };
