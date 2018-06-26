@@ -19,29 +19,27 @@ let cards = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt
     rank1stars = gameCardsQTY + 10;
     min = 0;
     sec = 0;
-    stopTimer = 0;
+    
 
 /**
 *@description Timer function. When a player starts a game, a displayed timer should also starts. Timer stops when player wins.
 *@param {number}
 *@returns {number} returns the time in seconds and minutes
 */
+let firstClick = false;
+let clock;
 
-window.onload = function() {
-    setInterval(function() {
-        if (stopTimer !== 1) {
-            sec++;
-            if (sec === 60) {
-                min++;
-                sec = 0;
-            }
-            $('.timer').html(min + ':' + sec);
-            console.log(min);
-            console.log(sec);
+function timer() {
+    firstClick = true;
+    clock = setInterval(function() {
+        sec++;
+        if (sec === 60) {
+            min++;
+            sec = 0;
         }
-
-    }, 1000);
-};
+        $('.timer').html(min + ':' + sec);
+        }, 1000);
+}
 
 /*
  * Display the cards on the page
@@ -143,7 +141,10 @@ $deck.on('click', '.card:not(".match, .open")', function() {
 	    let $this = $(this),
 			card = $this.context.innerHTML;
   	$this.addClass('open show');
-        opened.push(card);
+            opened.push(card);
+	if (!firstClick) {
+	    timer();
+	}
 /**
 * @description Flip second card: Compare with first card
 * @param {.open}  - Second click occurs. Any click is logged and compared 
@@ -183,7 +184,7 @@ if (gameCardsQTY === match) {
 	    setTimeout(function() {
             endGame(moves, score);
         }, 500);
-        stopTimer = 1;
+        clearInterval(clock);
         $('.timer').hide();
         $('.timer').html('0:0');
         $('.timer').show();
